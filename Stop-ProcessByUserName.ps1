@@ -29,28 +29,14 @@ Begin{
 }
 
 Process{
-    If (!(Test-Path -Path $scriptUserSession)){
-        Write-Host "$scriptUserSession not found" -ForegroundColor Red
-        Exit 1
-    }
-    . $scriptUserSession
-
-    $sessionId = (Get-UserSession -ComputerName $ComputerName  | Where-Object { $_.Username -eq $UserName } | Select-Object -Property Id).Id
-    Write-Verbose "SessionId: $sessionId"
-
-    if (!($sessionId)){
-        Write-Host 'User is not logged on.' -ForegroundColor Red
-        exit 1
-    }
-    
-    $process = Get-Process -Name $ProcessName -ComputerName $ComputerName | Where-Object -FilterScript { $_.SessionId -eq $SessionId }
-    if (!($process)){
+    $result = tasklist.exe /S $ComputerName /FI "USERNAME eq $UserName" /FI "IMAGENAME eq $ProcessName" /FO CSV | ConvertFrom-Csv
+    if (!($result)){
         Write-Host 'No matching process was found.' -ForegroundColor Red
     }
     else{
         Write-Host 'Process has been found and will be terminated...'
         try{
-            Invoke-Command -ComputerName $ComputerName -ScriptBlock { Stop-Process -Name $using:ProcessName }
+            taskkill.exe /S $ComputerName /IM $ProcessName /FI "USERNAME eq $UserName"
             Write-Host '...done'
         }
         catch{
@@ -65,6 +51,5 @@ End{
         ProcessName,`
         UserName,`
         scriptUserSession,`
-        sessionId,`
         ComputerName
 }

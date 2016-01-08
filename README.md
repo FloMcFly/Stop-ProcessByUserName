@@ -1,15 +1,11 @@
 # Stop-ProcessByUserName
-[PowerShell] This script stops Processes based on username and process name.
-
-It uses the script [Get-UserSession](https://gallery.technet.microsoft.com/scriptcenter/Get-UserSessions-Parse-b4c97837) by Cookie.Monster.
-It have to be located in the same folder as Stop-ProcessByUserName.
+[PowerShell] This script stops Processes based on username and process name. Basically it is a wrapper around taskkill and tasklist ;)
 
 #ToDo
-- Replace requirement "Get-UserSession" from TechNet Gallery with own solution.
 - Write-Help ;)
 
 # Usage
 Open a PowerShell console:
 ```
-.\Stop-ProcessByUserName -ProcessName notepad -UserName florian
+.\Stop-ProcessByUserName -ProcessName notepad -UserName test123 -ComputerName Random
 ```

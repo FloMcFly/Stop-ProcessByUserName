@@ -7,3 +7,9 @@ It have to be located in the same folder as Stop-ProcessByUserName.
 #ToDo
 - Replace requirement "Get-UserSession" from TechNet Gallery with own solution.
 - Write-Help ;)
+
+# Usage
+Open a PowerShell console:
+```
+.\Stop-ProcessByUserName -ProcessName notepad -UserName florian
+```

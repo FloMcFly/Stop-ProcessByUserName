@@ -2,6 +2,13 @@
 
 <#
 
+Version: 1.0
+Author: Florian Frank, florian.frank2@googlemail.com
+
+Dependencie:
+- Get-UserSession (https://gallery.technet.microsoft.com/scriptcenter/Get-UserSessions-Parse-b4c97837) from Cookie.Monster.
+It have to be located in the same folder as Stop-ProcessByUserName.
+
 Not working:
 - Get-UserSession on remote machines(?)
 
@@ -54,7 +61,10 @@ Process{
 }
 
 End{
-    Remove-Variable -Name `        ProcessName,`
-        UserName,`        scriptUserSession,`        sessionId,`
+    Remove-Variable -Name `
+        ProcessName,`
+        UserName,`
+        scriptUserSession,`
+        sessionId,`
         ComputerName
 }

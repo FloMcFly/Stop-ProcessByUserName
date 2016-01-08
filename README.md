@@ -10,5 +10,5 @@ Using the Parameter ComputerName makes it possible to execute this action even o
 # Usage
 Open a PowerShell console:
 ```
-.\Stop-ProcessByUserName -ProcessName notepad -UserName test123 -ComputerName Random
+.\Stop-ProcessByUserName -ProcessName notepad.exe -UserName test123 -ComputerName Random
 ```
